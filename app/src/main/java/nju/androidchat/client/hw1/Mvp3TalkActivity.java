@@ -1,4 +1,4 @@
-package nju.androidchat.client.mvp0;
+package nju.androidchat.client.hw1;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -7,7 +7,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,19 +24,19 @@ import nju.androidchat.client.component.ItemTextSend;
 import nju.androidchat.client.component.OnRecallMessageRequested;
 
 @Log
-public class Mvp0TalkActivity extends AppCompatActivity implements Mvp0Contract.View, TextView.OnEditorActionListener, OnRecallMessageRequested {
-    private Mvp0Contract.Presenter presenter;
+public class Mvp3TalkActivity extends AppCompatActivity implements Mvp3Contract.TalkView, TextView.OnEditorActionListener, OnRecallMessageRequested {
+    private Mvp3Contract.TalkPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Mvp0TalkModel mvp0TalkModel = new Mvp0TalkModel();
+        Mvp3TalkModel mvp3TalkModel = new Mvp3TalkModel();
 
         // Create the presenter
-        this.presenter = new Mvp0TalkPresenter(mvp0TalkModel, this, new ArrayList<>());
-        mvp0TalkModel.setIMvp0TalkPresenter(this.presenter);
+        this.presenter = new Mvp3TalkPresenter(mvp3TalkModel, this, new ArrayList<>());
+        mvp3TalkModel.setIMvp0TalkPresenter(this.presenter);
     }
 
     @Override
@@ -71,7 +70,7 @@ public class Mvp0TalkActivity extends AppCompatActivity implements Mvp0Contract.
     }
 
     @Override
-    public void setPresenter(Mvp0Contract.Presenter presenter) {
+    public void setPresenter(Mvp3Contract.TalkPresenter presenter) {
         this.presenter = presenter;
     }
 
@@ -103,6 +102,8 @@ public class Mvp0TalkActivity extends AppCompatActivity implements Mvp0Contract.
         AsyncTask.execute(() -> {
             this.presenter.sendMessage(text.getText().toString());
         });
+        text.setText("");
+
     }
 
     public void onBtnSendClicked(View v) {
@@ -110,9 +111,10 @@ public class Mvp0TalkActivity extends AppCompatActivity implements Mvp0Contract.
         sendText();
     }
 
-    // 当用户长按消息，并选择撤回消息时做什么，MVP-0不实现
+    // 当用户长按消息，并选择撤回消息时做什么
     @Override
     public void onRecallMessageRequested(UUID messageId) {
-
+        this.presenter.recallMessage(messageId);
     }
+
 }
