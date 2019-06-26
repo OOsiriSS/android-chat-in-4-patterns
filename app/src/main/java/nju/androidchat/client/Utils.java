@@ -13,7 +13,7 @@ import java.util.Properties;
 
 import lombok.experimental.UtilityClass;
 import lombok.extern.java.Log;
-import nju.androidchat.client.mvvm0.Mvvm0TalkActivity;
+import nju.androidchat.client.mvp2.Mvp2TalkActivity;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
