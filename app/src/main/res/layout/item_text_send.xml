@@ -42,12 +42,21 @@
 
             <TextView
                 android:id="@+id/chat_item_content_text"
-                android:layout_width="match_parent"
+                android:layout_width="match_parent"         
                 android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/chat_item_layout_content"
+                android:layout_weight="4"
                 android:background="@drawable/message_text_send"
                 android:text="你好"
                 android:textColor="#333333"
                 android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/chat_item_content_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@tools:sample/avatars[2]" />
 
         </LinearLayout>
     </RelativeLayout>
