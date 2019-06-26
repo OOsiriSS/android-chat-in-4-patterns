@@ -104,6 +104,8 @@ public class Mvp2TalkActivity extends AppCompatActivity implements Mvp2Contract.
         AsyncTask.execute(() -> {
             this.presenter.sendMessage(text.getText().toString());
         });
+        text.setText("");
+
     }
 
     public void onBtnSendClicked(View v) {
