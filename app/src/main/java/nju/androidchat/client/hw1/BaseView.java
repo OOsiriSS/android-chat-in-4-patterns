@@ -1,4 +1,4 @@
-package nju.androidchat.client.mvp0;
+package nju.androidchat.client.hw1;
 
 public interface BaseView<T> {
 
