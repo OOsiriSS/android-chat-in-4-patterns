@@ -1,6 +1,9 @@
 package nju.androidchat.client.mvp2;
 
 import android.os.AsyncTask;
+import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -8,6 +11,7 @@ import java.util.UUID;
 import lombok.Setter;
 import lombok.extern.java.Log;
 import nju.androidchat.client.ClientMessage;
+import nju.androidchat.client.R;
 import nju.androidchat.client.socket.MessageListener;
 import nju.androidchat.client.socket.SocketClient;
 import nju.androidchat.shared.message.ClientSendMessage;
@@ -45,12 +49,14 @@ public class Mvp2TalkModel implements MessageListener, Mvp2Contract.TalkModel {
 
     @Override
     public ClientMessage sendInformation(String message) {
+        
         //处理事件
         LocalDateTime now = LocalDateTime.now();
         UUID uuid = UUID.randomUUID();
         ClientMessage clientMessage = new ClientMessage(uuid, now, getUsername(), message);
         // 阻塞地把信息发送到服务器
         client.writeToServer(new ClientSendMessage(uuid, now, message));
+        
         return clientMessage;
     }
 
